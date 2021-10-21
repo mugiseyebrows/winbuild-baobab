@@ -1,0 +1,26 @@
+version: 0.0.1
+
+branches:
+  only:
+    - main
+
+build_script: |
+  set PATH=C:\Python39-x64;C:\Python39-x64\Scripts;%PATH%
+  python -m pip install mugideploy
+  C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"
+  C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"
+  C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S mingw-w64-x86_64-baobab"
+  set VERSION=40.0
+  C:\msys64\mingw64\bin\baobab.exe --version
+  mugideploy collect --app baobab --version %VERSION% --bin C:\msys64\mingw64\bin\baobab.exe --msys-root C:\msys64 --msystem MINGW64
+  7z a baobab-%VERSION%-win64.zip baobab-%VERSION%-win64
+
+artifacts:
+  - path: 'baobab-*.zip'
+    name: dist
+
+deploy:
+  description: 'winbuild-baobab'
+  provider: GitHub
+  auth_token:
+    secure: jBN4dQaXdrv9SsDZGZXuGQJ9LlP+jPRXFq++Sbt+qo1dTFGiTIGemBMEazWuPAxc
