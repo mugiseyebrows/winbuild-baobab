@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 41.0
 
 branches:
   only:
@@ -10,7 +10,7 @@ build_script: |
   C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"
   C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"
   C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S mingw-w64-x86_64-baobab"
-  set VERSION=40.0
+  set VERSION=41.0
   C:\msys64\mingw64\bin\baobab.exe --version
   mugideploy collect --app baobab --version %VERSION% --bin C:\msys64\mingw64\bin\baobab.exe --msys-root C:\msys64 --msystem MINGW64
   7z a baobab-%VERSION%-win64.zip baobab-%VERSION%-win64
